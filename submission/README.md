@@ -17,8 +17,8 @@ No endpoint is exposed publicly by these scripts.
 
 ## Reproduce from a fresh checkout
 
-Clone this repository and download the `v0.1.0` release asset
-`laya-e2-multitype-seed20260925.tar.gz`. Verify the archive against
+Clone this repository and download the [v0.1.0 release asset](https://github.com/13974737898-lgtm/laya-e2-multitype/releases/download/v0.1.0/laya-e2-multitype-seed20260925.tar.gz).
+Verify the archive against
 `release-manifest.json` before extracting it. The archive contains a complete
 model directory, including tokenizer and encoder configuration. Keep that
 directory outside the code checkout if convenient.
@@ -36,7 +36,7 @@ python3 -m venv .venv
 .venv/bin/python -m pip install -e './laya-upstream[serve]'
 export LAYA_SOURCE_ROOT="$PWD/laya-upstream"
 export LAYA_RUNTIME="$PWD/.venv/bin/python"
-export E2_MODEL_PATH="/absolute/path/to/extracted/laya-e2-multitype-seed20260925"
+export E2_MODEL_PATH="/absolute/path/to/extracted/release"
 export LAYA_DEVICE=cpu
 ./submission/start.sh
 ```
@@ -44,7 +44,8 @@ export LAYA_DEVICE=cpu
 Run the commands from the root of this repository after cloning the upstream
 source into `laya-upstream/`. The checked-out source and `.venv` are local to
 this project; `start.sh` only launches the existing environment and never
-installs packages. Use `./submission/stop.sh` when finished. If extracting
+installs packages. `tmux` is required by the lifecycle scripts. Use
+`./submission/stop.sh` when finished. If extracting
 the archive produces a differently named top-level directory, set
 `E2_MODEL_PATH` to the directory containing `model.safetensors`.
 
@@ -59,7 +60,7 @@ curl -sS http://127.0.0.1:8942/v1/systemone \
 The [JevBench submission instructions](https://www.benchmarkheaven.com/jev-models)
 call for a GitHub issue containing a reproducible endpoint or runnable code,
 exact model and license, and a disclosure of public JevBench item use. This
-directory is a local runnable package, not a submitted or public endpoint.
+directory is a publicly available runnable package, not a public endpoint.
 
 ## Acceptance and release files
 
@@ -73,6 +74,4 @@ score.
 
 The portable model directory on DGX is indexed by
 `submission/release-manifest.json`, with the model card in `MODEL_CARD.md`.
-The archived directory is the intended model asset for an eventual public
-release. Publishing that asset and creating a JevBench issue are separate
-external actions; neither has happened yet.
+The archived directory is published as the [v0.1.0 release asset](https://github.com/13974737898-lgtm/laya-e2-multitype/releases/tag/v0.1.0).

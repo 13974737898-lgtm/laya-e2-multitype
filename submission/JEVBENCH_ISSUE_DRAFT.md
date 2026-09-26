@@ -1,4 +1,4 @@
-# Draft — do not post until the code and weight links are public
+# Ready-to-post request (freeze source revision before posting)
 
 **Title:** JevBench evaluation request: Laya E2 Multitype, frozen 421M open checkpoint
 
@@ -10,10 +10,10 @@ decisions. It is a native typed-decision model and returns probabilities for
 or threshold tuning during inference.
 
 - **Runnable code:** `https://github.com/13974737898-lgtm/laya-e2-multitype`
-  (proposed public repository; link is not live yet).
-- **Exact weights:** the `v0.1.0` release asset
-  `laya-e2-multitype-seed20260925.tar.gz` in that repository (proposed;
-  link is not live yet). Archive SHA256:
+  at the source revision linked in the submitted issue. Fresh-checkout
+  instructions are in `submission/README.md`.
+- **Exact weights:** [v0.1.0 release asset](https://github.com/13974737898-lgtm/laya-e2-multitype/releases/download/v0.1.0/laya-e2-multitype-seed20260925.tar.gz).
+  Archive size 777,062,797 bytes. Archive SHA256:
   `970c4ebbb1608d980500d8f23f1965b5b1de4ee0b556007d5702412bec1bb767`.
   Checkpoint SHA256:
   `e4e3ca110dd2f294e2b3c43dd7ef9afe0352ea397ca0e7e6f7fbfb05dccf7789`.
@@ -42,6 +42,12 @@ or threshold tuning during inference.
   Our public-slice ECE was 0.186, so we do not claim independently calibrated
   probabilities. Please report the benchmark's calibration measurement as
   observed.
+
+For a clean run, extract the release archive, set `E2_MODEL_PATH` to the
+extracted `release/` directory, install pinned upstream Laya with its `serve`
+extra in a project-local environment, then run `submission/start.sh`. The
+service binds `127.0.0.1:8942` by default and responds at
+`POST /v1/systemone`. `submission/README.md` gives the exact commands.
 
 We prefer evaluator-controlled execution from the published code and weights
 so the sealed item text need not be sent to our machine. If that is not
