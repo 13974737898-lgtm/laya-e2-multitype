@@ -1,0 +1,49 @@
+{
+  "n": 699,
+  "seed": 20260926,
+  "resamples": 10000,
+  "by_family": {
+    "arc_challenge": {
+      "n": 299,
+      "base_correct": 81,
+      "e2_correct": 87,
+      "gain": 0.020066889632107024,
+      "paired_item_bootstrap_95ci": [
+        -0.016722408026755852,
+        0.056856187290969896
+      ],
+      "wrong_to_right": 18,
+      "right_to_wrong": 12,
+      "majority_label": "D",
+      "majority_label_accuracy": 0.27424749163879597,
+      "base_errors": 0,
+      "e2_errors": 0,
+      "base_truncated": 0,
+      "e2_truncated": 0
+    },
+    "boolq": {
+      "n": 400,
+      "base_correct": 303,
+      "e2_correct": 317,
+      "gain": 0.035,
+      "paired_item_bootstrap_95ci": [
+        0.01,
+        0.06
+      ],
+      "wrong_to_right": 21,
+      "right_to_wrong": 7,
+      "majority_label": "yes",
+      "majority_label_accuracy": 0.6375,
+      "base_errors": 0,
+      "e2_errors": 0,
+      "base_truncated": 2,
+      "e2_truncated": 2
+    }
+  },
+  "macro_gain": 0.027533444816053514,
+  "macro_stratified_item_bootstrap_95ci": [
+    0.0057943143812709055,
+    0.04967809364548495
+  ],
+  "micro_gain": 0.02861230329041488
+}

@@ -1,0 +1,107 @@
+{
+  "schema_version": 2,
+  "experiment_id": "E2",
+  "run_id": "20260925T214313-native-multitype-seed20260925",
+  "status": "completed",
+  "execution_location": "remote",
+  "backend": "tmux",
+  "job_id": "laya-multitype-e2-train",
+  "pid": 241271,
+  "host": "dgx",
+  "working_directory": "/home/maolinqi/mlq/laya-jevbench-baseline/multi_type",
+  "storage": {
+    "local_project_root": "/Users/maolinqi/Documents/ChatGPT/laya能做什么",
+    "remote_project_root": "/home/maolinqi/mlq/laya-jevbench-baseline/multi_type",
+    "remote_run_directory": "/home/maolinqi/mlq/laya-jevbench-baseline/multi_type/runs/native_multitype_seed20260925",
+    "remote_storage_class": "persistent",
+    "remote_retention_until": "2026-12-31T23:59:59+08:00",
+    "backup_locator": null
+  },
+  "sync": {
+    "status": "verified",
+    "method": "scp",
+    "required_local_outputs": [
+      "runs/E2/20260925T214313/run-manifest.json",
+      "runs/E2/20260925T214313/config.json",
+      "runs/E2/20260925T214313/metrics.jsonl",
+      "runs/E2/20260925T214313/best.json",
+      "_research/E2-result.md",
+      "results/multitype-e2/locked-test/locked_comparison.json",
+      "results/multitype-e2/jevbench-transfer/paired.json"
+    ],
+    "verified_local_outputs": [
+      "runs/E2/20260925T214313/run-manifest.json",
+      "runs/E2/20260925T214313/config.json",
+      "runs/E2/20260925T214313/metrics.jsonl",
+      "runs/E2/20260925T214313/best.json",
+      "_research/E2-result.md",
+      "results/multitype-e2/locked-test/locked_comparison.json",
+      "results/multitype-e2/jevbench-transfer/paired.json"
+    ],
+    "last_synced_at": "2026-09-25T22:00:00+08:00",
+    "failure_reason": null
+  },
+  "remote_artifacts": [
+    {
+      "kind": "checkpoint",
+      "locator": "ssh://dgx/home/maolinqi/mlq/laya-jevbench-baseline/multi_type/runs/native_multitype_seed20260925/best.safetensors",
+      "checksum": "sha256:e4e3ca110dd2f294e2b3c43dd7ef9afe0352ea397ca0e7e6f7fbfb05dccf7789",
+      "size_bytes": 842609220,
+      "retention_note": "persistent project storage; review after 2026-12-31"
+    }
+  ],
+  "git": {
+    "commit": "23a17522aa4942da6cce53a995a275760320b691",
+    "dirty": false
+  },
+  "environment": {
+    "kind": "venv",
+    "locator": "/home/maolinqi/mlq/laya/.venv",
+    "digest": null
+  },
+  "data": {
+    "dataset_id": "multitype-e2-v1",
+    "version": "sha256:f7115f47421a9428e3150d30c842a09aa19cb192d9d8ac1af64edc6c65222573",
+    "split": "train+dev; test locked",
+    "hash": "sha256:f7115f47421a9428e3150d30c842a09aa19cb192d9d8ac1af64edc6c65222573"
+  },
+  "command": "USE_TF=0 /home/maolinqi/mlq/laya/.venv/bin/python train.py --run-name native_multitype_seed20260925 --epochs 2 --seed 20260925 --batch 8 --accum 4",
+  "config_paths": [
+    "_research/E2-plan.md",
+    "data/multitype-e2/manifest.json",
+    "scripts/train_multitype_e2.py"
+  ],
+  "seeds": [
+    20260925
+  ],
+  "hardware": {
+    "device": "cuda",
+    "gpu_model": "NVIDIA GB10",
+    "gpu_count": 1,
+    "cpu_count": null,
+    "memory_gb": 121
+  },
+  "resources": {
+    "time_limit": null,
+    "budget_note": "Existing DGX Spark, two pilot epochs, no external paid API"
+  },
+  "logs": [
+    "/home/maolinqi/mlq/laya-jevbench-baseline/multi_type/logs/native_train.log"
+  ],
+  "raw_results": [
+    "/home/maolinqi/mlq/laya-jevbench-baseline/multi_type/runs/native_multitype_seed20260925/metrics.jsonl"
+  ],
+  "checkpoints": [
+    "/home/maolinqi/mlq/laya-jevbench-baseline/multi_type/runs/native_multitype_seed20260925/best.safetensors"
+  ],
+  "started_at": "2026-09-25T21:43:48+08:00",
+  "last_checked_at": "2026-09-25T22:00:00+08:00",
+  "ended_at": "2026-09-25T21:52:00+08:00",
+  "exit_code": 0,
+  "heartbeat": "two epochs completed; locked test and public transfer results archived locally",
+  "stop_command": "tmux kill-session -t laya-multitype-e2-train",
+  "resume_command": null,
+  "retry_count": 0,
+  "failure_reason": null,
+  "notes": "Exploratory E2. Dev selected epoch 2; test evaluated once. JevBench public gain +4/231 with paired CI spanning zero. Pre-registered plan: _research/E2-plan.md."
+}

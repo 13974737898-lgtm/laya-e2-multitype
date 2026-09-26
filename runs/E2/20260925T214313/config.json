@@ -1,0 +1,130 @@
+{
+  "run_name": "native_multitype_seed20260925",
+  "epochs": 2,
+  "seed": 20260925,
+  "batch": 8,
+  "accum": 4,
+  "training_examples": 9600,
+  "dev_examples": 1920,
+  "model_revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+  "data_manifest": {
+    "version": "multitype-e2-v1",
+    "seeds": {
+      "train": 2026092501,
+      "dev": 2026092502,
+      "test": 2026092503
+    },
+    "counts_per_family": {
+      "train": 2400,
+      "dev": 480,
+      "test": 480
+    },
+    "family_labels": {
+      "policy": [
+        "process",
+        "hold",
+        "escalate"
+      ],
+      "temporal": [
+        "on_time",
+        "late",
+        "over_limit"
+      ],
+      "evidence": [
+        "supported",
+        "contradicted",
+        "insufficient"
+      ],
+      "routing": [
+        "lookup",
+        "modify",
+        "escalate"
+      ]
+    },
+    "source": "independently authored deterministic generators; no benchmark items imported",
+    "splits": {
+      "train": {
+        "rows": 9600,
+        "sha256": "f7115f47421a9428e3150d30c842a09aa19cb192d9d8ac1af64edc6c65222573",
+        "counts": {
+          "policy": {
+            "process": 800,
+            "escalate": 800,
+            "hold": 800
+          },
+          "temporal": {
+            "on_time": 800,
+            "over_limit": 800,
+            "late": 800
+          },
+          "evidence": {
+            "contradicted": 800,
+            "insufficient": 800,
+            "supported": 800
+          },
+          "routing": {
+            "lookup": 800,
+            "escalate": 800,
+            "modify": 800
+          }
+        }
+      },
+      "dev": {
+        "rows": 1920,
+        "sha256": "02c8e54d5a03ce42f272764375c6618cb4d05e422a1fa9951fb5a14653de686c",
+        "counts": {
+          "policy": {
+            "process": 160,
+            "hold": 160,
+            "escalate": 160
+          },
+          "temporal": {
+            "late": 160,
+            "on_time": 160,
+            "over_limit": 160
+          },
+          "evidence": {
+            "supported": 160,
+            "contradicted": 160,
+            "insufficient": 160
+          },
+          "routing": {
+            "modify": 160,
+            "lookup": 160,
+            "escalate": 160
+          }
+        }
+      },
+      "test": {
+        "rows": 1920,
+        "sha256": "f1a465f975225797bda3d144ea4e72e58b66d76aec122930d25685baafc91ed1",
+        "counts": {
+          "policy": {
+            "hold": 160,
+            "escalate": 160,
+            "process": 160
+          },
+          "temporal": {
+            "over_limit": 160,
+            "on_time": 160,
+            "late": 160
+          },
+          "evidence": {
+            "supported": 160,
+            "insufficient": 160,
+            "contradicted": 160
+          },
+          "routing": {
+            "modify": 160,
+            "lookup": 160,
+            "escalate": 160
+          }
+        }
+      }
+    }
+  },
+  "objective": "hard-label supervised CE on native Laya choice head",
+  "selection": "highest dev accuracy; tie lowest dev NLL",
+  "test_used": false,
+  "torch": "2.9.1+cu130"
+}

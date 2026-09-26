@@ -1,0 +1,14 @@
+{
+  "n": 231,
+  "base_correct": 134,
+  "e2_correct": 138,
+  "gain": 0.017316017316017316,
+  "item_bootstrap_95ci": [
+    -0.030303030303030304,
+    0.06493506493506493
+  ],
+  "wrong_to_right": 17,
+  "right_to_wrong": 13,
+  "bootstrap_seed": 20260925,
+  "bootstrap_resamples": 10000
+}

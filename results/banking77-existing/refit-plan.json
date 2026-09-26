@@ -1,0 +1,11 @@
+{
+  "source": "development-selected protocol; fixed before refit test",
+  "runs": ["laya_full_seed42", "laya_full_seed123", "laya_full_seed777"],
+  "weights": [0.3, 0.2, 0.5],
+  "epochs": [3, 3, 4],
+  "training_rows": 9976,
+  "selection_evidence": "runs/laya_ensemble_v2/selection.json",
+  "selection_dev_accuracy": 0.9488465189933777,
+  "selection_cal_accuracy": 0.9415911436080933,
+  "note": "Final refit uses train+dev+cal after model and ensemble selection; prior public test results of earlier checkpoints were observed, so this is not a blind first-use public test."
+}

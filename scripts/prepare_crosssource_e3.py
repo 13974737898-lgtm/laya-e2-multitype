@@ -3,7 +3,6 @@
 import hashlib
 import json
 import random
-import time
 import urllib.request
 from pathlib import Path
 
@@ -13,21 +12,13 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "data" / "crosssource-e3"
 SEED = 20260926
 SOURCES = [
-    ("google/boolq", "default", "validation", 3270, "35b264d03638db9f4ce671b711558bf7ff0f80d5"),
-    ("allenai/ai2_arc", "ARC-Challenge", "validation", 299, "210d026faf9955653af8916fad021475a3f00453"),
+    ("google/boolq", "default", "validation", 3270,
+     "35b264d03638db9f4ce671b711558bf7ff0f80d5",
+     "52355d11524b4b874a9b9dcc278feb10f672d52c4f4eff9872e695ede59820f8"),
+    ("allenai/ai2_arc", "ARC-Challenge", "validation", 299,
+     "210d026faf9955653af8916fad021475a3f00453",
+     "395a5c88d1580d69855fbaee9450270578df1ad5af6259771cd0a42c20e99f05"),
 ]
-
-
-def get_json(url):
-    for attempt in range(4):
-        try:
-            req = urllib.request.Request(url, headers={"User-Agent": "laya-crosssource-e3/1.0"})
-            with urllib.request.urlopen(req, timeout=30) as response:
-                return json.load(response)
-        except Exception:
-            if attempt == 3:
-                raise
-            time.sleep(2 ** attempt)
 
 
 def digest(path):
@@ -39,9 +30,7 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     manifest = {"version": "crosssource-e3-v1", "selection_seed": SEED, "sources": [], "outputs": {}}
     selected = []
-    for repo, config, split, expected_n, expected_sha in SOURCES:
-        before = get_json("https://huggingface.co/api/datasets/" + repo)["sha"]
-        assert before == expected_sha, (repo, before)
+    for repo, config, split, expected_n, expected_sha, expected_parquet_hash in SOURCES:
         family = "boolq" if config == "default" else "arc_challenge"
         source_path = ("data/validation-00000-of-00001.parquet" if family == "boolq"
                        else "ARC-Challenge/validation-00000-of-00001.parquet")
@@ -51,14 +40,14 @@ def main():
         with urllib.request.urlopen(req, timeout=60) as response, parquet_path.open("wb") as target:
             while block := response.read(1024 * 1024):
                 target.write(block)
+        assert digest(parquet_path) == expected_parquet_hash, repo
         fetched = pq.read_table(parquet_path).to_pylist()
-        after = get_json("https://huggingface.co/api/datasets/" + repo)["sha"]
-        assert before == after and len(fetched) == expected_n
+        assert len(fetched) == expected_n
         raw_path = OUT / f"{family}-validation-source.jsonl"
         with raw_path.open("w") as stream:
             for row in fetched:
                 stream.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
-        manifest["sources"].append({"repo": repo, "revision": before, "config": config,
+        manifest["sources"].append({"repo": repo, "revision": expected_sha, "config": config,
                                     "split": split, "rows": expected_n,
                                     "source_path": source_path,
                                     "parquet_snapshot": parquet_path.name,

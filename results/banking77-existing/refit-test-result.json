@@ -1,0 +1,40 @@
+{
+  "plan": {
+    "source": "development-selected protocol; fixed before refit test",
+    "runs": [
+      "laya_full_seed42",
+      "laya_full_seed123",
+      "laya_full_seed777"
+    ],
+    "weights": [
+      0.3,
+      0.2,
+      0.5
+    ],
+    "epochs": [
+      3,
+      3,
+      4
+    ],
+    "training_rows": 9976,
+    "selection_evidence": "runs/laya_ensemble_v2/selection.json",
+    "selection_dev_accuracy": 0.9488465189933777,
+    "selection_cal_accuracy": 0.9415911436080933,
+    "note": "Final refit uses train+dev+cal after model and ensemble selection; prior public test results of earlier checkpoints were observed, so this is not a blind first-use public test."
+  },
+  "official_test": {
+    "n": 3080,
+    "accuracy": 0.9435064792633057,
+    "macro_f1": 0.9434370416334477,
+    "top3_accuracy": 0.9889610409736633,
+    "nll": 0.22679252922534943,
+    "ece_15bin": 0.02879800543963135
+  },
+  "single_model_accuracy": {
+    "laya_full_seed42": 0.9415584206581116,
+    "laya_full_seed123": 0.9396103620529175,
+    "laya_full_seed777": 0.9396103620529175
+  },
+  "test_wall_s": 10.824339956976473,
+  "test_truncated_count": 0
+}

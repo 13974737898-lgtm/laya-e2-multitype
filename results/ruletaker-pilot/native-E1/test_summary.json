@@ -1,0 +1,96 @@
+{
+  "split": "test",
+  "selection": {
+    "n": 1750,
+    "accuracy": 0.868,
+    "nll": 0.2622410010466618,
+    "epoch": 2,
+    "train_loss": 0.23271792041224296,
+    "epoch_wall_s": 329.7928318330087
+  },
+  "base": {
+    "n": 1750,
+    "accuracy": 0.5074285714285715,
+    "brier_binary": 0.3314017092114286,
+    "ece_10bin": 0.2815586285714286,
+    "p50_latency_s": 0.018355890060774982,
+    "p95_latency_s": 0.025176360039040446,
+    "by_config": {
+      "depth-0": {
+        "n": 250,
+        "accuracy": 0.512
+      },
+      "depth-1": {
+        "n": 250,
+        "accuracy": 0.528
+      },
+      "depth-2": {
+        "n": 250,
+        "accuracy": 0.512
+      },
+      "depth-3": {
+        "n": 250,
+        "accuracy": 0.5
+      },
+      "depth-3ext": {
+        "n": 250,
+        "accuracy": 0.504
+      },
+      "depth-3ext-NatLang": {
+        "n": 250,
+        "accuracy": 0.496
+      },
+      "depth-5": {
+        "n": 250,
+        "accuracy": 0.5
+      }
+    }
+  },
+  "tuned": {
+    "n": 1750,
+    "accuracy": 0.8714285714285714,
+    "brier_binary": 0.08742830681142857,
+    "ece_10bin": 0.028880114285714287,
+    "p50_latency_s": 0.01839241699781269,
+    "p95_latency_s": 0.0253068080637604,
+    "by_config": {
+      "depth-0": {
+        "n": 250,
+        "accuracy": 0.932
+      },
+      "depth-1": {
+        "n": 250,
+        "accuracy": 0.872
+      },
+      "depth-2": {
+        "n": 250,
+        "accuracy": 0.876
+      },
+      "depth-3": {
+        "n": 250,
+        "accuracy": 0.836
+      },
+      "depth-3ext": {
+        "n": 250,
+        "accuracy": 0.896
+      },
+      "depth-3ext-NatLang": {
+        "n": 250,
+        "accuracy": 0.888
+      },
+      "depth-5": {
+        "n": 250,
+        "accuracy": 0.8
+      }
+    }
+  },
+  "paired_gain": 0.364,
+  "paired_bootstrap_95ci": [
+    0.33485714285714285,
+    0.39085714285714285
+  ],
+  "wrong_to_right": 749,
+  "right_to_wrong": 112,
+  "prompt_version": "ruletaker-choice-v1",
+  "test_used_for_selection": false
+}

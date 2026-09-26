@@ -1,0 +1,112 @@
+{
+  "schema_version": 2,
+  "experiment_id": "E3",
+  "run_id": "20260926T090500-crosssource-frozen",
+  "status": "completed",
+  "execution_location": "remote",
+  "backend": "tmux",
+  "job_id": "laya-crosssource-e3-eval",
+  "pid": 292426,
+  "host": "dgx",
+  "working_directory": "/home/maolinqi/mlq/laya-jevbench-baseline/cross_source",
+  "storage": {
+    "local_project_root": "/Users/maolinqi/Documents/ChatGPT/laya能做什么",
+    "remote_project_root": "/home/maolinqi/mlq/laya-jevbench-baseline/cross_source",
+    "remote_run_directory": "/home/maolinqi/mlq/laya-jevbench-baseline/cross_source/runs",
+    "remote_storage_class": "persistent",
+    "remote_retention_until": "2026-12-31T23:59:59+08:00",
+    "backup_locator": null
+  },
+  "sync": {
+    "status": "verified",
+    "method": "scp",
+    "required_local_outputs": [
+      "runs/E3/20260926T090500/run-manifest.json",
+      "results/crosssource-e3/base/summary.json",
+      "results/crosssource-e3/e2/summary.json",
+      "results/crosssource-e3/paired.json",
+      "_research/E3-result.md"
+    ],
+    "verified_local_outputs": [
+      "runs/E3/20260926T090500/run-manifest.json",
+      "results/crosssource-e3/base/summary.json",
+      "results/crosssource-e3/e2/summary.json",
+      "results/crosssource-e3/paired.json",
+      "_research/E3-result.md"
+    ],
+    "last_synced_at": "2026-09-26T09:11:00+08:00",
+    "failure_reason": null
+  },
+  "remote_artifacts": [
+    {
+      "kind": "raw_result",
+      "locator": "ssh://dgx/home/maolinqi/mlq/laya-jevbench-baseline/cross_source/runs/base/records.jsonl",
+      "checksum": "sha256:c80a59917c5c70fd010e66271e35d145f0955d09f9f8ad69260804bfd910ac48",
+      "size_bytes": 208231,
+      "retention_note": "persistent project storage; review after 2026-12-31"
+    },
+    {
+      "kind": "raw_result",
+      "locator": "ssh://dgx/home/maolinqi/mlq/laya-jevbench-baseline/cross_source/runs/e2/records.jsonl",
+      "checksum": "sha256:c833d556dbde302f6e142b1ceea9982ae1695be0c1d109cb7f3c5125fa7cf7a0",
+      "size_bytes": 208135,
+      "retention_note": "persistent project storage; review after 2026-12-31"
+    }
+  ],
+  "git": {
+    "commit": "a3a58fcac8cd13ea3875a959eef28ab8f9ccddd3",
+    "dirty": true
+  },
+  "environment": {
+    "kind": "venv",
+    "locator": "/home/maolinqi/mlq/laya/.venv",
+    "digest": null
+  },
+  "data": {
+    "dataset_id": "crosssource-e3-v1",
+    "version": "sha256:efa5e77fb95624ed76b09042430212d3790ea202664b4b9b2c12ae3f84a79189",
+    "split": "BoolQ validation sampled 400 + ARC-Challenge validation all 299",
+    "hash": "sha256:efa5e77fb95624ed76b09042430212d3790ea202664b4b9b2c12ae3f84a79189"
+  },
+  "command": "USE_TF=0 /home/maolinqi/mlq/laya/.venv/bin/python eval.py --model <base|E2> --label <base|e2>",
+  "config_paths": [
+    "_research/E3-plan.md",
+    "data/crosssource-e3/manifest.json",
+    "scripts/eval_crosssource_e3.py"
+  ],
+  "seeds": [
+    20260926
+  ],
+  "hardware": {
+    "device": "cuda",
+    "gpu_model": "NVIDIA GB10",
+    "gpu_count": 1,
+    "cpu_count": null,
+    "memory_gb": 121
+  },
+  "resources": {
+    "time_limit": null,
+    "budget_note": "Existing DGX Spark; two frozen model evaluations, no paid API"
+  },
+  "logs": [
+    "/home/maolinqi/mlq/laya-jevbench-baseline/cross_source/logs/eval.log"
+  ],
+  "raw_results": [
+    "/home/maolinqi/mlq/laya-jevbench-baseline/cross_source/runs/base/records.jsonl",
+    "/home/maolinqi/mlq/laya-jevbench-baseline/cross_source/runs/e2/records.jsonl"
+  ],
+  "checkpoints": [
+    "/home/maolinqi/mlq/laya-jevbench-baseline/model/model.safetensors",
+    "/home/maolinqi/mlq/laya-jevbench-baseline/multi_type/runs/native_multitype_seed20260925/best.safetensors"
+  ],
+  "started_at": "2026-09-26T09:06:15+08:00",
+  "last_checked_at": "2026-09-26T09:11:00+08:00",
+  "ended_at": "2026-09-26T09:11:00+08:00",
+  "exit_code": 0,
+  "heartbeat": "Both 699-row summaries and records complete; tmux session ended and no evaluation process remains",
+  "stop_command": "tmux kill-session -t laya-crosssource-e3-eval",
+  "resume_command": null,
+  "retry_count": 0,
+  "failure_reason": null,
+  "notes": "Commit binds the code version used for E3, plan and source manifest. Local project remains dirty from E1/E2 artifacts. E3 data SHA256 is fixed. eval.py sha256:4e8cd63c8619935a7abdbd97d4fa515a6c89d7f643751a791d0517f7740955ef. Exit code inferred from both complete summaries, both full 699-row records and no code after the final print; tmux stdout redirection did not retain the exit marker."
+}

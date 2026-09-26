@@ -1,0 +1,26 @@
+{
+  "model": "/home/maolinqi/mlq/laya-jevbench-baseline/rule_reasoning/runs/native_ruletaker_seed20260925/export",
+  "split": "test",
+  "n": 1920,
+  "accuracy": 0.39739583333333334,
+  "errors": 0,
+  "by_family": {
+    "evidence": {
+      "n": 480,
+      "accuracy": 0.48125
+    },
+    "policy": {
+      "n": 480,
+      "accuracy": 0.4
+    },
+    "routing": {
+      "n": 480,
+      "accuracy": 0.35
+    },
+    "temporal": {
+      "n": 480,
+      "accuracy": 0.35833333333333334
+    }
+  },
+  "wall_s": 33.66513077693526
+}

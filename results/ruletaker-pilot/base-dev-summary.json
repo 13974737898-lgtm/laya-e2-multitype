@@ -1,0 +1,42 @@
+{
+  "n": 1750,
+  "accuracy": 0.516,
+  "errors": 0,
+  "by_config": {
+    "depth-0": {
+      "n": 250,
+      "accuracy": 0.516
+    },
+    "depth-1": {
+      "n": 250,
+      "accuracy": 0.536
+    },
+    "depth-2": {
+      "n": 250,
+      "accuracy": 0.512
+    },
+    "depth-3": {
+      "n": 250,
+      "accuracy": 0.5
+    },
+    "depth-3ext": {
+      "n": 250,
+      "accuracy": 0.548
+    },
+    "depth-3ext-NatLang": {
+      "n": 250,
+      "accuracy": 0.496
+    },
+    "depth-5": {
+      "n": 250,
+      "accuracy": 0.504
+    }
+  },
+  "wall_s": 34.505356457899325,
+  "model": "convaiinnovations/laya@55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+  "split": "dev",
+  "prompt_version": "ruletaker-choice-v1",
+  "max_len": 512,
+  "head_max_len": 192,
+  "test_used": false
+}

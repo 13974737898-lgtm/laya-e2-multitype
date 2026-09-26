@@ -1,0 +1,106 @@
+{
+  "normalization": "NFKC + casefold + punctuation/whitespace collapse",
+  "splits": {
+    "train": {
+      "file": "train-00000-of-00001-52adaa842dd7ed92.parquet",
+      "sha256": "beade0ce8650bfaf3f1d57bae54e686db029bbef277fa75617e35edc1d53b2c9",
+      "rows": 480152,
+      "labels": {
+        "entailment": 241543,
+        "not entailment": 238609
+      },
+      "configs": {
+        "depth-1": 61699,
+        "depth-5": 65589,
+        "depth-3": 62613,
+        "depth-3ext": 70000,
+        "depth-2": 62331,
+        "depth-3ext-NatLang": 70000,
+        "NatLang": 27363,
+        "depth-0": 60557
+      },
+      "null_rows": 0,
+      "unique_context_question": 340732,
+      "duplicate_pair_rows": 139420,
+      "conflicting_pair_labels": 0,
+      "unique_contexts": 43712,
+      "unique_questions": 1684,
+      "max_word_count": 241,
+      "p95_word_count": 179
+    },
+    "dev": {
+      "file": "dev-00000-of-00001-480b21836eb3db96.parquet",
+      "sha256": "bee30b8af45998ec42ae9fa1e2904b1bc77f90c4c50da38a407d89508756d4e7",
+      "rows": 75872,
+      "labels": {
+        "entailment": 38158,
+        "not entailment": 37714
+      },
+      "configs": {
+        "depth-1": 8870,
+        "depth-5": 9486,
+        "depth-3": 8896,
+        "depth-3ext": 11587,
+        "depth-2": 8906,
+        "depth-3ext-NatLang": 15510,
+        "NatLang": 3899,
+        "depth-0": 8718
+      },
+      "null_rows": 0,
+      "unique_context_question": 48862,
+      "duplicate_pair_rows": 27010,
+      "conflicting_pair_labels": 0,
+      "unique_contexts": 6252,
+      "unique_questions": 1684,
+      "max_word_count": 240,
+      "p95_word_count": 177
+    },
+    "test": {
+      "file": "test-00000-of-00001-402c217dbcd02599.parquet",
+      "sha256": "51dd62b07c199ba82870345e6c872eb0314770fbb0efbf30a632a1edbbbf3ffd",
+      "rows": 151911,
+      "labels": {
+        "entailment": 76426,
+        "not entailment": 75485
+      },
+      "configs": {
+        "depth-1": 17788,
+        "depth-5": 19021,
+        "depth-3": 17982,
+        "depth-3ext": 23222,
+        "depth-2": 17741,
+        "depth-3ext-NatLang": 31017,
+        "NatLang": 7793,
+        "depth-0": 17347
+      },
+      "null_rows": 0,
+      "unique_context_question": 97866,
+      "duplicate_pair_rows": 54045,
+      "conflicting_pair_labels": 0,
+      "unique_contexts": 12483,
+      "unique_questions": 1684,
+      "max_word_count": 237,
+      "p95_word_count": 180
+    }
+  },
+  "overlap": {
+    "train_dev": {
+      "same_context_question": 0,
+      "same_context": 0,
+      "same_question": 1684,
+      "conflicting_label_for_same_pair": 0
+    },
+    "train_test": {
+      "same_context_question": 0,
+      "same_context": 0,
+      "same_question": 1684,
+      "conflicting_label_for_same_pair": 0
+    },
+    "dev_test": {
+      "same_context_question": 0,
+      "same_context": 0,
+      "same_question": 1684,
+      "conflicting_label_for_same_pair": 0
+    }
+  }
+}

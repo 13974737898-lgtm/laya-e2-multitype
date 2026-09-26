@@ -1,0 +1,98 @@
+{
+  "n": 1920,
+  "models": {
+    "base_test": {
+      "accuracy": 0.37552083333333336,
+      "errors": 0,
+      "by_family": {
+        "evidence": {
+          "n": 480,
+          "accuracy": 0.41875
+        },
+        "policy": {
+          "n": 480,
+          "accuracy": 0.35
+        },
+        "routing": {
+          "n": 480,
+          "accuracy": 0.35625
+        },
+        "temporal": {
+          "n": 480,
+          "accuracy": 0.3770833333333333
+        }
+      }
+    },
+    "e1_test": {
+      "accuracy": 0.39739583333333334,
+      "errors": 0,
+      "by_family": {
+        "evidence": {
+          "n": 480,
+          "accuracy": 0.48125
+        },
+        "policy": {
+          "n": 480,
+          "accuracy": 0.4
+        },
+        "routing": {
+          "n": 480,
+          "accuracy": 0.35
+        },
+        "temporal": {
+          "n": 480,
+          "accuracy": 0.35833333333333334
+        }
+      }
+    },
+    "e2_test": {
+      "accuracy": 0.9854166666666667,
+      "errors": 0,
+      "by_family": {
+        "evidence": {
+          "n": 480,
+          "accuracy": 1.0
+        },
+        "policy": {
+          "n": 480,
+          "accuracy": 0.9541666666666667
+        },
+        "routing": {
+          "n": 480,
+          "accuracy": 0.9916666666666667
+        },
+        "temporal": {
+          "n": 480,
+          "accuracy": 0.9958333333333333
+        }
+      }
+    }
+  },
+  "base_to_e1": {
+    "gain": 0.021875,
+    "item_bootstrap_95ci": [
+      0.0005208333333333333,
+      0.04375
+    ],
+    "wrong_to_right": 244,
+    "right_to_wrong": 202
+  },
+  "base_to_e2": {
+    "gain": 0.6098958333333333,
+    "item_bootstrap_95ci": [
+      0.5880208333333333,
+      0.6322916666666667
+    ],
+    "wrong_to_right": 1179,
+    "right_to_wrong": 8
+  },
+  "e1_to_e2": {
+    "gain": 0.5880208333333333,
+    "item_bootstrap_95ci": [
+      0.565625,
+      0.6104166666666667
+    ],
+    "wrong_to_right": 1143,
+    "right_to_wrong": 14
+  }
+}

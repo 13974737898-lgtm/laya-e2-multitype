@@ -1,0 +1,26 @@
+{
+  "model": "/home/maolinqi/mlq/laya-jevbench-baseline/multi_type/runs/native_multitype_seed20260925/export",
+  "split": "test",
+  "n": 1920,
+  "accuracy": 0.9854166666666667,
+  "errors": 0,
+  "by_family": {
+    "evidence": {
+      "n": 480,
+      "accuracy": 1.0
+    },
+    "policy": {
+      "n": 480,
+      "accuracy": 0.9541666666666667
+    },
+    "routing": {
+      "n": 480,
+      "accuracy": 0.9916666666666667
+    },
+    "temporal": {
+      "n": 480,
+      "accuracy": 0.9958333333333333
+    }
+  },
+  "wall_s": 33.618299831985496
+}

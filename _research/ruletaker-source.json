@@ -1,0 +1,14 @@
+{
+  "dataset": "tasksource/ruletaker",
+  "revision": "a3e0880baeb6ec3d478f4c4d85afe04b21b6cf7f",
+  "upstream": "allenai/ruletaker",
+  "license_reported_by_mirror": "apache-2.0",
+  "columns_observed": ["context", "question", "label", "config"],
+  "example_labels_observed": ["entailment", "not entailment"],
+  "published_split_rows": {"train": 480152, "dev": 75872, "test": 151911},
+  "data_downloaded": true,
+  "split_overlap_audited": true,
+  "audit_result": "No identical normalized context or context-question pair across train/dev/test. Within-split duplicate pairs are common; pilot uses deduplicated fixed samples.",
+  "audit_path": "results/ruletaker-audit/audit.json",
+  "notes": "Downloaded pinned mirror to DGX on 2026-09-25. Upstream repository LICENSE and mirror both report Apache-2.0; retain attribution and confirm original data package terms before redistributing data."
+}

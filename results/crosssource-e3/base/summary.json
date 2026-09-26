@@ -1,0 +1,26 @@
+{
+  "model": "/home/maolinqi/mlq/laya-jevbench-baseline/model",
+  "n": 699,
+  "correct": 384,
+  "accuracy": 0.5493562231759657,
+  "macro_accuracy": 0.5142015050167223,
+  "errors": 0,
+  "truncated": 2,
+  "by_family": {
+    "arc_challenge": {
+      "n": 299,
+      "correct": 81,
+      "accuracy": 0.2709030100334448,
+      "errors": 0,
+      "truncated": 0
+    },
+    "boolq": {
+      "n": 400,
+      "correct": 303,
+      "accuracy": 0.7575,
+      "errors": 0,
+      "truncated": 2
+    }
+  },
+  "wall_s": 13.434370512026362
+}

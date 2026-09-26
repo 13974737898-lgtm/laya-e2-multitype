@@ -1,0 +1,342 @@
+{
+  "schema_version": 5,
+  "revision": 8,
+  "updated_at": "2026-09-26T09:15:14+08:00",
+  "project": {
+    "name": "Laya 开源决策模型冲榜",
+    "root": ".",
+    "scope": "DGX Spark 上的 Laya 配置、微调和开源模型组合，形成可复现公开成绩"
+  },
+  "current": {
+    "objective": "获得可信的开源决策模型成绩并公开权重或系统、代码和评测证据",
+    "problem": "Laya 基础权重在广义决策任务上准确率不足，且公开题调参不能证明 sealed 泛化",
+    "research_gap": null,
+    "research_question": "独立数据微调与按难度升级能否改善质量、速度和成本折中？",
+    "proposed_contributions": [
+      "可复现的小模型决策基线",
+      "纯 Laya 与开源组合系统的公平比较"
+    ],
+    "stage": "evidence_audit",
+    "summary": "E3 冻结模型跨来源公开诊断：BoolQ 75.75%→79.25%，ARC-Challenge 27.09%→29.10%，等权配对增益 +2.75 pp（95% CI +0.58 至 +4.97）。这是有限公开迁移信号。JevBench 当前为 v1.4.2，正式分数含 308 道新 sealed 题及四轴评分；既有 231 公开题无法推出正式名次。",
+    "blockers": [
+      "JevBench v1.4.2 正式分数包括新的 308 道 sealed 题，当前 E2 尚无 sealed 结果",
+      "E3 为公开验证集且可能有预训练污染；ARC 绝对准确率 29.10% 接近多数标签基线 27.42%",
+      "本地 JevBench 运行基于旧公开切片；正式提交协议、模型许可和开放复现包仍需对齐"
+    ],
+    "next_action": "依据 JevBench v1.4.2 规则核对单一 E2 候选的模型许可、TypeSafe 兼容接口、公开复现包和官方 sealed 评测入口，再决定是否提交",
+    "next_action_reason": "官方公布原版 Laya sealed 准确率显著低于公开切片；继续优化旧公开题不构成榜单证据，正式协议对齐是最低成本且最有价值的下一门槛",
+    "requires_user_decision": false
+  },
+  "sources": [
+    {
+      "id": "S1",
+      "title": "E1 原始运行与结果记录",
+      "locator": "_research/E1-result.md",
+      "access_level": "full_text",
+      "checked_at": "2026-09-25T19:51:03+08:00",
+      "evidence_locations": [
+        "results/ruletaker-pilot/native-E1/test_summary.json",
+        "results/ruletaker-pilot/jevbench-transfer/summary.json",
+        "runs/E1/20260925T192136/run-manifest.json"
+      ],
+      "notes": "DGX 原始数据与 checkpoint 由 run manifest 索引，紧凑结果已回传本地"
+    },
+    {
+      "id": "S2",
+      "title": "E2 原始运行与结果记录",
+      "locator": "_research/E2-result.md",
+      "access_level": "full_text",
+      "checked_at": "2026-09-25T22:00:00+08:00",
+      "evidence_locations": [
+        "runs/E2/20260925T214313/run-manifest.json",
+        "results/multitype-e2/locked-test/locked_comparison.json",
+        "results/multitype-e2/jevbench-transfer/paired.json"
+      ],
+      "notes": "DGX 保留 checkpoint；本地已回传配置、紧凑指标和逐题记录"
+    },
+    {
+      "id": "S3",
+      "title": "E3 BoolQ 与 ARC-Challenge 固定来源及运行结果",
+      "locator": "_research/E3-result.md",
+      "access_level": "full_text",
+      "checked_at": "2026-09-26T09:11:00+08:00",
+      "evidence_locations": [
+        "data/crosssource-e3/manifest.json",
+        "runs/E3/20260926T090500/run-manifest.json",
+        "results/crosssource-e3/paired.json"
+      ],
+      "notes": "两数据集均是公开验证集；版本、许可和原始文件哈希固定"
+    },
+    {
+      "id": "S4",
+      "title": "JevBench v1.4.2 正式方法与 Laya 已公布结果",
+      "locator": "https://github.com/fstandhartinger/jevbench/blob/main/docs/METHOD-v1.4.md",
+      "access_level": "full_text",
+      "checked_at": "2026-09-26T09:15:00+08:00",
+      "evidence_locations": [
+        "https://github.com/fstandhartinger/jevbench/blob/main/docs/RELEASE-v1.4.2.md",
+        "https://github.com/NandhaKishorM/laya/issues/252",
+        "_research/E3-result.md"
+      ],
+      "notes": "官方方法含 308 sealed 决策和四轴综合；旧 231 公开题不可视作正式分数"
+    }
+  ],
+  "hypotheses": [
+    {
+      "id": "H1",
+      "statement": "独立规则蕴含数据微调原生 Laya 决策头可改善规则任务并迁移到广义决策",
+      "mechanism": "模型学习从上下文与问题中判断逻辑蕴含",
+      "prediction": "RuleTaker 锁定测试和 JevBench 公开题均高于原版",
+      "falsifier": "RuleTaker 提升但 JevBench 无明确提升",
+      "status": "weakened",
+      "evidence_refs": [
+        "E1"
+      ]
+    },
+    {
+      "id": "H2",
+      "statement": "多类型独立生成决策题微调可改善 Laya 原生 choice 能力并迁移到 JevBench",
+      "mechanism": "训练覆盖政策、时间、证据与工具路由四种决策形态",
+      "prediction": "锁定多类型 test 与 JevBench 公开题均较原版提高",
+      "falsifier": "同生成器 test 提高但 JevBench 无明确改善",
+      "status": "weakened",
+      "evidence_refs": [
+        "E2"
+      ]
+    },
+    {
+      "id": "H3",
+      "statement": "E2 多类型权重在未用于训练的不同来源公开任务上较基础 Laya 有小幅改善",
+      "mechanism": "多类型监督减轻基础模型在选择任务上的错误偏向",
+      "prediction": "BoolQ 与 ARC-Challenge 的冻结对照均改善，等权配对增益为正",
+      "falsifier": "两来源一方退化，或等权增益与零无法区分",
+      "status": "supported",
+      "evidence_refs": [
+        "E3"
+      ]
+    }
+  ],
+  "experiments": [
+    {
+      "id": "E1",
+      "hypothesis_refs": [
+        "H1"
+      ],
+      "purpose": "检验原生 Laya 在独立规则数据上的可训练性和广义决策迁移",
+      "mode": "exploratory",
+      "status": "completed",
+      "plan": "8,750/1,750/1,750 去重均衡 RuleTaker；两轮 hard-label CE；dev 选权重；test 一次评测；JevBench 公开题冻结后诊断",
+      "baselines": [
+        "原版 Laya，choice-v1 同提示同配置"
+      ],
+      "primary_metrics": [
+        "RuleTaker test accuracy",
+        "JevBench public accuracy"
+      ],
+      "decision_rule": "dev 最高准确率选 checkpoint；若锁定 RuleTaker 提升但 JevBench 未提升，不扩大单源训练",
+      "config_or_log": "runs/E1/20260925T192136/run-manifest.json",
+      "result_summary": "RuleTaker test +36.40 个百分点；JevBench public -1.73 个百分点且区间跨零",
+      "result_artifacts": [
+        "_research/E1-result.md",
+        "results/ruletaker-pilot/native-E1/test_summary.json",
+        "results/ruletaker-pilot/jevbench-transfer/summary.json"
+      ],
+      "evidence_refs": [
+        "S1"
+      ]
+    },
+    {
+      "id": "E2",
+      "hypothesis_refs": [
+        "H2"
+      ],
+      "purpose": "检验多类型原生 Laya 训练的任务内学习与广义迁移",
+      "mode": "exploratory",
+      "status": "completed",
+      "plan": "四类合成任务各 2400/480/480 train/dev/test；两轮 CE；dev 选权重；test 一次；JevBench 公开题冻结后诊断",
+      "baselines": [
+        "原版 Laya choice-v1",
+        "E1 RuleTaker 权重"
+      ],
+      "primary_metrics": [
+        "E2 locked test accuracy",
+        "JevBench public accuracy"
+      ],
+      "decision_rule": "dev 最优选 checkpoint；若 test 高而 JevBench 未明确提高，停止扩大同生成器训练并转向真实来源任务",
+      "config_or_log": "runs/E2/20260925T214313/run-manifest.json",
+      "result_summary": "E2 test 98.54% vs base 37.55%；JevBench public 59.74% vs 58.01%，配对 95% CI -3.03 至 +6.49 pp，不能确认迁移",
+      "result_artifacts": [
+        "_research/E2-result.md",
+        "results/multitype-e2/locked-test/locked_comparison.json",
+        "results/multitype-e2/jevbench-transfer/paired.json"
+      ],
+      "evidence_refs": [
+        "S2"
+      ]
+    },
+    {
+      "id": "E3",
+      "hypothesis_refs": [
+        "H3"
+      ],
+      "purpose": "区分 E2 同生成器高分与跨来源公开任务表现",
+      "mode": "exploratory",
+      "status": "completed",
+      "plan": "冻结 base/E2 权重；BoolQ validation 种子抽样 400 题、ARC-Challenge validation 全部 299 题；同一 choice 配置；等权配对分析",
+      "baselines": [
+        "原版 Laya choice-v1",
+        "各来源多数标签常数预测"
+      ],
+      "primary_metrics": [
+        "source-macro accuracy gain",
+        "per-source paired accuracy gain"
+      ],
+      "decision_rule": "两来源均改善且等权配对区间排除零、无明显有效性问题时仅记探索性跨来源信号；不得据此宣称榜单领先",
+      "config_or_log": "runs/E3/20260926T090500/run-manifest.json",
+      "result_summary": "BoolQ +3.50 pp，ARC-Challenge +2.01 pp；等权 +2.75 pp（95% CI +0.58 至 +4.97）；ARC 绝对分数仍低",
+      "result_artifacts": [
+        "_research/E3-result.md",
+        "results/crosssource-e3/paired.json",
+        "data/crosssource-e3/manifest.json"
+      ],
+      "evidence_refs": [
+        "S3"
+      ]
+    }
+  ],
+  "claims": [],
+  "writing": {
+    "target_venue": null,
+    "submission_deadline": null,
+    "constraints": [],
+    "language": "zh-CN",
+    "main_path": null,
+    "status": "not_started",
+    "sections": [],
+    "open_issues": []
+  },
+  "decisions": [],
+  "milestones": [
+    {
+      "id": "M1",
+      "recorded_at": "2026-09-25T19:51:03+08:00",
+      "event": "RuleTaker 原生 Laya 训练及迁移诊断完成",
+      "outcome": "规则专项提升明确，JevBench 公开题未见迁移增益；调整下一轮数据覆盖面",
+      "object_refs": [
+        "H1",
+        "E1"
+      ],
+      "artifact_paths": [
+        "_research/E1-result.md"
+      ],
+      "next_action": "固定多类型独立训练与验证协议"
+    },
+    {
+      "id": "M2",
+      "recorded_at": "2026-09-25T22:00:00+08:00",
+      "event": "E2 多类型训练、锁定测试与 JevBench 迁移诊断完成",
+      "outcome": "合成任务族内学习显著，公开基准仅微弱且不确定的改善；下一轮需跨来源验证",
+      "object_refs": [
+        "H2",
+        "E2"
+      ],
+      "artifact_paths": [
+        "_research/E2-result.md",
+        "runs/E2/20260925T214313/run-manifest.json"
+      ],
+      "next_action": "建立真实来源且与 JevBench 隔离的混合决策验证任务"
+    },
+    {
+      "id": "M3",
+      "recorded_at": "2026-09-26T09:11:00+08:00",
+      "event": "E3 两来源公开验证完成",
+      "outcome": "冻结 E2 在 BoolQ 与 ARC 上均小幅上涨，尚未建立隐藏榜单优势",
+      "object_refs": [
+        "H3",
+        "E3"
+      ],
+      "artifact_paths": [
+        "_research/E3-result.md",
+        "runs/E3/20260926T090500/run-manifest.json"
+      ],
+      "next_action": "核对正式隐藏评测并冻结可复现提交包"
+    }
+  ],
+  "artifacts": [
+    {
+      "kind": "research_note",
+      "path": "README.md",
+      "description": "研究范围、已确认基线和下一实验门"
+    },
+    {
+      "kind": "result",
+      "path": "results/H384/summary.json",
+      "description": "JevBench 公开题 head budget 384 摘要"
+    },
+    {
+      "kind": "result",
+      "path": "results/H384/records.jsonl",
+      "description": "JevBench 公开题逐题结果"
+    },
+    {
+      "kind": "experiment_plan",
+      "path": "_research/next-experiment.md",
+      "description": "下一轮原生 Laya 微调与独立验证协议"
+    },
+    {
+      "kind": "result",
+      "path": "results/banking77-existing/refit-test-result.json",
+      "description": "现有 Banking77 专项模型最终公开测试结果"
+    },
+    {
+      "kind": "source_manifest",
+      "path": "_research/ruletaker-source.json",
+      "description": "RuleTaker 候选数据固定版本和待审计项"
+    },
+    {
+      "kind": "run_manifest",
+      "path": "runs/E1/20260925T192136/run-manifest.json",
+      "description": "RuleTaker 原生决策头 pilot 运行清单"
+    },
+    {
+      "kind": "result",
+      "path": "results/ruletaker-audit/audit.json",
+      "description": "RuleTaker 划分与重复审计"
+    },
+    {
+      "kind": "result",
+      "path": "results/ruletaker-pilot/base-dev-summary.json",
+      "description": "原版 Laya 在 RuleTaker 开发集的基线"
+    },
+    {
+      "kind": "result_summary",
+      "path": "_research/E1-result.md",
+      "description": "E1 数据、训练、测试与迁移判断"
+    },
+    {
+      "kind": "result_summary",
+      "path": "_research/E2-result.md",
+      "description": "E2 训练、锁定测试与公开基准迁移判断"
+    },
+    {
+      "kind": "run_manifest",
+      "path": "runs/E2/20260925T214313/run-manifest.json",
+      "description": "E2 DGX 训练运行及远程 checkpoint 索引"
+    },
+    {
+      "kind": "source_manifest",
+      "path": "data/crosssource-e3/manifest.json",
+      "description": "BoolQ 与 ARC-Challenge 固定版本、许可和样本哈希"
+    },
+    {
+      "kind": "result_summary",
+      "path": "_research/E3-result.md",
+      "description": "跨来源冻结模型诊断及解释边界"
+    },
+    {
+      "kind": "run_manifest",
+      "path": "runs/E3/20260926T090500/run-manifest.json",
+      "description": "E3 DGX 评测运行和结果索引"
+    }
+  ]
+}

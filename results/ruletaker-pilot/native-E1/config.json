@@ -1,0 +1,99 @@
+{
+  "run_name": "native_ruletaker_seed20260925",
+  "epochs": 2,
+  "seed": 20260925,
+  "batch": 8,
+  "accum": 4,
+  "training_examples": 8750,
+  "dev_examples": 1750,
+  "model_revision": "55cf4c4ebb4ebe31b2550e8bdf3bd21b99753851",
+  "data_manifest": {
+    "seed": "laya-ruletaker-pilot-20260925-v1",
+    "quota_per_config_label": {
+      "train": 625,
+      "dev": 125,
+      "test": 125
+    },
+    "normalization": "NFKC + casefold + punctuation/whitespace collapse",
+    "source_files": {
+      "train": {
+        "name": "train-00000-of-00001-52adaa842dd7ed92.parquet",
+        "sha256": "beade0ce8650bfaf3f1d57bae54e686db029bbef277fa75617e35edc1d53b2c9"
+      },
+      "dev": {
+        "name": "dev-00000-of-00001-480b21836eb3db96.parquet",
+        "sha256": "bee30b8af45998ec42ae9fa1e2904b1bc77f90c4c50da38a407d89508756d4e7"
+      },
+      "test": {
+        "name": "test-00000-of-00001-402c217dbcd02599.parquet",
+        "sha256": "51dd62b07c199ba82870345e6c872eb0314770fbb0efbf30a632a1edbbbf3ffd"
+      }
+    },
+    "splits": {
+      "train": {
+        "rows": 8750,
+        "sha256": "fb2468965667d08ac29e92ba190c0ed762efa48e0c1016dff3393365431f90fe",
+        "source_unique_by_config_label": {
+          "depth-1|entailment": 30947,
+          "depth-1|not entailment": 30752,
+          "depth-5|entailment": 32757,
+          "depth-5|not entailment": 32832,
+          "depth-3|entailment": 31368,
+          "depth-3|not entailment": 31245,
+          "depth-3ext|entailment": 5585,
+          "depth-3ext|not entailment": 5415,
+          "depth-2|entailment": 28687,
+          "depth-2|not entailment": 28305,
+          "depth-3ext-NatLang|entailment": 9140,
+          "depth-3ext-NatLang|not entailment": 9137,
+          "depth-0|entailment": 28204,
+          "depth-0|not entailment": 26585
+        }
+      },
+      "dev": {
+        "rows": 1750,
+        "sha256": "f58f4758a1ce0f1b99fed2a9354beb437bd21b379cf9415024bcc367e6918805",
+        "source_unique_by_config_label": {
+          "depth-1|entailment": 4449,
+          "depth-1|not entailment": 4421,
+          "depth-5|not entailment": 4749,
+          "depth-5|entailment": 4737,
+          "depth-3|entailment": 4456,
+          "depth-3|not entailment": 4440,
+          "depth-3ext|entailment": 934,
+          "depth-3ext|not entailment": 897,
+          "depth-2|entailment": 4028,
+          "depth-2|not entailment": 3974,
+          "depth-3ext-NatLang|entailment": 1973,
+          "depth-3ext-NatLang|not entailment": 1965,
+          "depth-0|entailment": 4039,
+          "depth-0|not entailment": 3800
+        }
+      },
+      "test": {
+        "rows": 1750,
+        "sha256": "1f7cd423637ecd33aa67b02ae95b0407aa54d337d7da324e4c93f5316cb5db57",
+        "source_unique_by_config_label": {
+          "depth-1|entailment": 8933,
+          "depth-1|not entailment": 8855,
+          "depth-5|entailment": 9517,
+          "depth-5|not entailment": 9504,
+          "depth-3|entailment": 9011,
+          "depth-3|not entailment": 8971,
+          "depth-3ext|entailment": 1825,
+          "depth-3ext|not entailment": 1754,
+          "depth-2|entailment": 8044,
+          "depth-2|not entailment": 7989,
+          "depth-3ext-NatLang|entailment": 3918,
+          "depth-3ext-NatLang|not entailment": 3916,
+          "depth-0|entailment": 8033,
+          "depth-0|not entailment": 7596
+        }
+      }
+    }
+  },
+  "objective": "hard-label supervised CE on native Laya choice head",
+  "selection": "highest dev accuracy; tie lowest dev NLL",
+  "test_used": false,
+  "torch": "2.9.1+cu130"
+}
