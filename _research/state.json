@@ -1,7 +1,7 @@
 {
   "schema_version": 5,
-  "revision": 10,
-  "updated_at": "2026-09-26T10:03:18+08:00",
+  "revision": 11,
+  "updated_at": "2026-09-26T10:23:24+08:00",
   "project": {
     "name": "Laya 开源决策模型冲榜",
     "root": ".",
@@ -17,7 +17,7 @@
       "纯 Laya 与开源组合系统的公平比较"
     ],
     "stage": "evidence_audit",
-    "summary": "E2 固定权重、可运行代码和 Apache-2.0 说明已公开；GitHub Release 777,062,797 字节资产的 SHA256 与 DGX 原件一致。JevBench 评测申请 #103 已提交，仍无 sealed 成绩。",
+    "summary": "E2 固定权重、可运行代码和 Apache-2.0 说明已公开；GitHub Release 777,062,797 字节资产的 SHA256 与 DGX 原件一致。JevBench 评测申请 #103 已提交，仍无 sealed 成绩。 另已在 DGX 验证现有 Laya 编码器加 LoRA、决策头保留训练的单样本前向/反向与合并可行；尚无 LoRA 训练成绩。",
     "blockers": [
       "E2 尚无 JevBench v1.4.2 sealed 结果和正式名次；需评测方处理申请 #103",
       "模型加载时部分 choice 温度参数被夹取；概率尚未独立校准"
@@ -91,6 +91,18 @@
         "results/submission-readiness/release-acceptance.json"
       ],
       "notes": "公开权重及代码已核实，JevBench 申请 #103 已发出；无 sealed 成绩"
+    },
+    {
+      "id": "S6",
+      "title": "Laya 原生模型 LoRA 结构可行性检查",
+      "locator": "_research/Laya-LoRA-feasibility.md",
+      "access_level": "full_text",
+      "checked_at": "2026-09-26T10:32:00+08:00",
+      "evidence_locations": [
+        "scripts/train_multitype_e2.py",
+        "_research/Laya-LoRA-feasibility.md"
+      ],
+      "notes": "DGX 单样本前向、反向与未训练适配器合并通过；不代表准确率增益"
     }
   ],
   "hypotheses": [
@@ -302,6 +314,19 @@
         "_research/submission-readiness.md"
       ],
       "next_action": "依据评测方反馈完成独立 sealed 评测"
+    },
+    {
+      "id": "M6",
+      "recorded_at": "2026-09-26T10:32:00+08:00",
+      "event": "Laya 原生编码器 LoRA 技术路径可行性检查",
+      "outcome": "r8 适配器、决策头梯度和合并接口通过；未进行训练或榜单测试",
+      "object_refs": [
+        "E2"
+      ],
+      "artifact_paths": [
+        "_research/Laya-LoRA-feasibility.md"
+      ],
+      "next_action": "若启动实验，从原版 Laya 出发对照 E2 全量微调协议做小规模 LoRA 试验"
     }
   ],
   "artifacts": [
