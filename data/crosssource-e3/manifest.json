@@ -1,0 +1,38 @@
+{
+  "version": "crosssource-e3-v1",
+  "selection_seed": 20260926,
+  "sources": [
+    {
+      "repo": "google/boolq",
+      "revision": "35b264d03638db9f4ce671b711558bf7ff0f80d5",
+      "config": "default",
+      "split": "validation",
+      "rows": 3270,
+      "source_path": "data/validation-00000-of-00001.parquet",
+      "parquet_snapshot": "boolq-validation-source.parquet",
+      "parquet_sha256": "52355d11524b4b874a9b9dcc278feb10f672d52c4f4eff9872e695ede59820f8",
+      "source_snapshot": "boolq-validation-source.jsonl",
+      "sha256": "e8fb84fbf510b022e963cddf3a3aded04151afa0ea0ef1cc1bf22f260ddd2344"
+    },
+    {
+      "repo": "allenai/ai2_arc",
+      "revision": "210d026faf9955653af8916fad021475a3f00453",
+      "config": "ARC-Challenge",
+      "split": "validation",
+      "rows": 299,
+      "source_path": "ARC-Challenge/validation-00000-of-00001.parquet",
+      "parquet_snapshot": "arc_challenge-validation-source.parquet",
+      "parquet_sha256": "395a5c88d1580d69855fbaee9450270578df1ad5af6259771cd0a42c20e99f05",
+      "source_snapshot": "arc_challenge-validation-source.jsonl",
+      "sha256": "16b59737cb520f748020546b5e3fa76f0893d1a1237bb350dd81dd43a09f151b"
+    }
+  ],
+  "outputs": {
+    "eval_rows": 699,
+    "eval_sha256": "efa5e77fb95624ed76b09042430212d3790ea202664b4b9b2c12ae3f84a79189",
+    "family_counts": {
+      "boolq": 400,
+      "arc_challenge": 299
+    }
+  }
+}
