@@ -15,6 +15,39 @@ is `127.0.0.1:8942`. `E2_BIND`, `E2_PORT`, `E2_MODEL_PATH`, `LAYA_SOURCE_ROOT`,
 handled by Laya's server if an authenticated remote endpoint is later needed.
 No endpoint is exposed publicly by these scripts.
 
+## Reproduce from a fresh checkout
+
+Clone this repository and download the `v0.1.0` release asset
+`laya-e2-multitype-seed20260925.tar.gz`. Verify the archive against
+`release-manifest.json` before extracting it. The archive contains a complete
+model directory, including tokenizer and encoder configuration. Keep that
+directory outside the code checkout if convenient.
+
+Create a dedicated Laya environment for this project. The following commands
+illustrate the pinned upstream source and required serving dependencies; use a
+CUDA-compatible PyTorch build for your own GPU and set `LAYA_DEVICE=cpu` when
+running without one.
+
+```bash
+git clone https://github.com/NandhaKishorM/laya.git laya-upstream
+git -C laya-upstream checkout 23a17522aa4942da6cce53a995a275760320b691
+python3 -m venv .venv
+.venv/bin/python -m pip install --upgrade pip
+.venv/bin/python -m pip install -e './laya-upstream[serve]'
+export LAYA_SOURCE_ROOT="$PWD/laya-upstream"
+export LAYA_RUNTIME="$PWD/.venv/bin/python"
+export E2_MODEL_PATH="/absolute/path/to/extracted/laya-e2-multitype-seed20260925"
+export LAYA_DEVICE=cpu
+./submission/start.sh
+```
+
+Run the commands from the root of this repository after cloning the upstream
+source into `laya-upstream/`. The checked-out source and `.venv` are local to
+this project; `start.sh` only launches the existing environment and never
+installs packages. Use `./submission/stop.sh` when finished. If extracting
+the archive produces a differently named top-level directory, set
+`E2_MODEL_PATH` to the directory containing `model.safetensors`.
+
 Example local request:
 
 ```bash
