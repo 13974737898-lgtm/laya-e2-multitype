@@ -17,11 +17,19 @@ No endpoint is exposed publicly by these scripts.
 
 ## Reproduce from a fresh checkout
 
-Clone this repository and download the [v0.1.0 release asset](https://github.com/13974737898-lgtm/laya-e2-multitype/releases/download/v0.1.0/laya-e2-multitype-seed20260925.tar.gz).
-Verify the archive against
-`release-manifest.json` before extracting it. The archive contains a complete
-model directory, including tokenizer and encoder configuration. Keep that
-directory outside the code checkout if convenient.
+These commands use a project-local environment and run the server in the
+foreground. They do not require tmux or access to our DGX. The archive
+contains the complete model, tokenizer, and encoder configuration.
+
+```bash
+git clone https://github.com/13974737898-lgtm/laya-e2-multitype.git
+cd laya-e2-multitype
+curl -fL -o laya-e2-multitype-seed20260925.tar.gz \
+  https://github.com/13974737898-lgtm/laya-e2-multitype/releases/download/v0.1.0/laya-e2-multitype-seed20260925.tar.gz
+printf '%s  %s\n' '970c4ebbb1608d980500d8f23f1965b5b1de4ee0b556007d5702412bec1bb767' \
+  laya-e2-multitype-seed20260925.tar.gz | sha256sum -c -
+tar -xzf laya-e2-multitype-seed20260925.tar.gz
+```
 
 Create a dedicated Laya environment for this project. The following commands
 illustrate the pinned upstream source and required serving dependencies; use a
@@ -36,18 +44,18 @@ python3 -m venv .venv
 .venv/bin/python -m pip install -e './laya-upstream[serve]'
 export LAYA_SOURCE_ROOT="$PWD/laya-upstream"
 export LAYA_RUNTIME="$PWD/.venv/bin/python"
-export E2_MODEL_PATH="/absolute/path/to/extracted/release"
+export E2_MODEL_PATH="$PWD/release"
 export LAYA_DEVICE=cpu
-./submission/start.sh
+export PYTHONPATH="$PWD/laya-upstream"
+export USE_TF=0
+cd submission
+../.venv/bin/python -m uvicorn e2_service:app --host 127.0.0.1 --port 8942 --workers 1
 ```
 
-Run the commands from the root of this repository after cloning the upstream
-source into `laya-upstream/`. The checked-out source and `.venv` are local to
-this project; `start.sh` only launches the existing environment and never
-installs packages. `tmux` is required by the lifecycle scripts. Use
-`./submission/stop.sh` when finished. If extracting
-the archive produces a differently named top-level directory, set
-`E2_MODEL_PATH` to the directory containing `model.safetensors`.
+Run these commands from the repository root until `cd submission`. For a GPU,
+install a CUDA-compatible PyTorch build in this environment and set
+`LAYA_DEVICE=cuda`. The pinned checkout and `.venv` stay inside this project.
+The optional `start.sh` and `stop.sh` manage a local tmux session instead.
 
 Example local request:
 
@@ -56,6 +64,22 @@ curl -sS http://127.0.0.1:8942/v1/systemone \
   -H 'Content-Type: application/json' \
   -d '{"state":"The request is verified.","model":"jev-latest","questions":{"decision":{"type":"noul","instructions":"Is the request verified?"}}}'
 ```
+
+From a separate shell in a JevBench checkout, the official public diagnostic
+uses its existing `typesafe` adapter:
+
+```bash
+python -m jevbench.cli run \
+  --tasks datasets/public/easy.jsonl,datasets/public/original.jsonl,datasets/public/hard.jsonl \
+  --adapter typesafe --endpoint http://127.0.0.1:8942 \
+  --key-env '' --model jev-latest --cost-basis self_hosted --reserve-usd 0 \
+  --results out/laya-e2-public.jsonl --raw-dir out/laya-e2-raw
+```
+
+Our earlier 231-item public run reported 138 correct. It is a diagnostic
+identity check only, not an official or sealed score. The three original
+fixture requests recorded in `results/submission-readiness/release-acceptance.json`
+also passed the official adapter and matched direct checkpoint inference.
 
 The [JevBench submission instructions](https://www.benchmarkheaven.com/jev-models)
 call for a GitHub issue containing a reproducible endpoint or runnable code,
