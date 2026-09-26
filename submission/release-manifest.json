@@ -1,13 +1,17 @@
 {
   "candidate": "laya-e2-multitype-seed20260925",
-  "status": "local_release_prepared_not_published",
+  "status": "published_evaluation_requested",
   "prepared_at": "2026-09-26",
+  "published_at": "2026-09-26",
+  "public_repository": "https://github.com/13974737898-lgtm/laya-e2-multitype",
+  "evaluation_issue": "https://github.com/fstandhartinger/jevbench/issues/103",
   "remote_directory": "ssh://dgx/home/maolinqi/mlq/laya-jevbench-baseline/e2_submission/release",
   "archive": {
     "locator": "ssh://dgx/home/maolinqi/mlq/laya-jevbench-baseline/e2_submission/laya-e2-multitype-seed20260925.tar.gz",
     "sha256": "970c4ebbb1608d980500d8f23f1965b5b1de4ee0b556007d5702412bec1bb767",
     "size_bytes": 777062797
   },
+  "public_archive": "https://github.com/13974737898-lgtm/laya-e2-multitype/releases/download/v0.1.0/laya-e2-multitype-seed20260925.tar.gz",
   "runtime": {
     "laya_version": "0.3.20",
     "laya_source_commit": "23a17522aa4942da6cce53a995a275760320b691",
@@ -44,6 +48,6 @@
     "jevbench_public_used_during_research": true,
     "sealed_jevbench_evaluation": false,
     "published_endpoint": false,
-    "published_weights": false
+    "published_weights": true
   }
 }

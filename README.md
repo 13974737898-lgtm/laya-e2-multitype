@@ -28,6 +28,6 @@ E2 四类自编任务训练使同生成器锁定测试由 37.55% 提至 98.54%�
 
 JevBench 当前 v1.4.2 官方分数包含旧版 534 题、新的 308 道 sealed 题，以及 Intelligence、Calibration、Speed、Cost 四轴。上述 231 题诊断不能换算成现行榜单名次。E2 还没有 sealed 结果；运行库会对该权重部分温度参数进行夹取，概率校准需要单独审视。
 
-`submission/` 已准备固定 E2 权重的 Jev 兼容服务和模型卡；DGX 上已形成带 SHA256 的自包含权重归档。JevBench 自带 TypeSafe 适配器通过 choice、noul、score 三类真实 HTTP 请求，并与直接加载权重的概率一致。目前只有本机验收，尚无公开权重、公开端点或官方提交。发布前需确定公开仓库与权重托管位置，并披露项目在研发过程中观察过 JevBench 公开题。
+`submission/` 提供固定 E2 权重的 Jev 兼容服务和模型卡。自包含权重已在 [v0.1.0 发布页](https://github.com/13974737898-lgtm/laya-e2-multitype/releases/tag/v0.1.0)公开；JevBench 自带 TypeSafe 适配器通过 choice、noul、score 三类真实 HTTP 请求，并与直接加载权重的概率一致。已发送 [JevBench 评测申请 #103](https://github.com/fstandhartinger/jevbench/issues/103)，披露研发中观察过公开题。目前仍只有本机接口验收，没有 sealed 成绩或正式名次。
 
 外部规则与截图来源：[JevBench](https://github.com/fstandhartinger/jevbench/blob/main/README.md)；[NeoHorse 模型卡](https://huggingface.co/TokenRhythm/NeoHorse-Jev-4B)。

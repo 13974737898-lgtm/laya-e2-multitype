@@ -1,7 +1,7 @@
 {
   "schema_version": 5,
-  "revision": 9,
-  "updated_at": "2026-09-26T09:37:56+08:00",
+  "revision": 10,
+  "updated_at": "2026-09-26T10:03:18+08:00",
   "project": {
     "name": "Laya 开源决策模型冲榜",
     "root": ".",
@@ -17,15 +17,14 @@
       "纯 Laya 与开源组合系统的公平比较"
     ],
     "stage": "evidence_audit",
-    "summary": "E2 提交前本机包已准备：自包含权重及 SHA256、Apache-2.0 模型卡、单一冻结模型 Jev 兼容服务；JevBench 自带 TypeSafeAdapter 对 choice/noul/score 三类原创新题 HTTP 验收及直接概率一致性通过。服务仅绑定本机且已停止。尚未公开权重或提交 v1.4.2 sealed 评测。",
+    "summary": "E2 固定权重、可运行代码和 Apache-2.0 说明已公开；GitHub Release 777,062,797 字节资产的 SHA256 与 DGX 原件一致。JevBench 评测申请 #103 已提交，仍无 sealed 成绩。",
     "blockers": [
-      "E2 尚无 JevBench v1.4.2 sealed 结果和正式名次",
-      "模型加载时部分 choice 温度参数被夹取；概率尚未独立校准",
-      "GitHub 公共仓库和 777 MB 权重资产尚未发布；公开账号与仓库名称待用户确认"
+      "E2 尚无 JevBench v1.4.2 sealed 结果和正式名次；需评测方处理申请 #103",
+      "模型加载时部分 choice 温度参数被夹取；概率尚未独立校准"
     ],
-    "next_action": "确认公开账号与仓库名称后发布已核验的代码和冻结权重归档，再按 JevBench 规则发送一次完整披露的评测 issue",
-    "next_action_reason": "正式榜单只接受可复现端点或可运行代码并要求模型许可与公开题使用披露；本机包已备齐，外部发布是当前唯一剩余的提交前门槛",
-    "requires_user_decision": true
+    "next_action": "关注 JevBench 评测申请 #103 的审核或运行反馈；若评测方提出可复现性问题，仅针对该问题补证或修复，取得 sealed 结果后再判断冲榜路线",
+    "next_action_reason": "代码与权重已公开，进一步在旧公开题上调参无法替代 sealed 评测；评测方的独立运行是下一关键证据",
+    "requires_user_decision": false
   },
   "sources": [
     {
@@ -85,13 +84,13 @@
       "title": "E2 提交包与 JevBench 接口验收",
       "locator": "_research/submission-readiness.md",
       "access_level": "full_text",
-      "checked_at": "2026-09-26T09:30:00+08:00",
+      "checked_at": "2026-09-26T10:02:59+08:00",
       "evidence_locations": [
         "submission/release-manifest.json",
         "submission/MODEL_CARD.md",
         "results/submission-readiness/release-acceptance.json"
       ],
-      "notes": "本机权重包可运行；未发布、未提交、无 sealed 成绩"
+      "notes": "公开权重及代码已核实，JevBench 申请 #103 已发出；无 sealed 成绩"
     }
   ],
   "hypotheses": [
@@ -288,6 +287,21 @@
         "submission/release-manifest.json"
       ],
       "next_action": "确认公开账号与仓库名称后发布并提交评测 issue"
+    },
+    {
+      "id": "M5",
+      "recorded_at": "2026-09-26T10:02:59+08:00",
+      "event": "E2 开源代码和权重发布并提交 JevBench 评测申请",
+      "outcome": "公开仓库与 v0.1.0 资产可访问，大小和 SHA256 对齐；申请 #103 open，等待独立 sealed 评测",
+      "object_refs": [
+        "E2",
+        "E3"
+      ],
+      "artifact_paths": [
+        "submission/release-manifest.json",
+        "_research/submission-readiness.md"
+      ],
+      "next_action": "依据评测方反馈完成独立 sealed 评测"
     }
   ],
   "artifacts": [

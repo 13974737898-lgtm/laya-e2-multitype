@@ -1,4 +1,7 @@
-# Ready-to-post request (freeze source revision before posting)
+# Submitted to JevBench as issue #103
+
+Submitted issue: https://github.com/fstandhartinger/jevbench/issues/103
+The issue pins source revision `50c0012a6c2e4d40a9f1d5773c4546debf798a0f`.
 
 **Title:** JevBench evaluation request: Laya E2 Multitype, frozen 421M open checkpoint
 
