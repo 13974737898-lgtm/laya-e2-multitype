@@ -5,3 +5,4 @@ data/crosssource-e3/*-source.jsonl
 data/crosssource-e3/eval.jsonl
 _research/backups/
 _research/state.json.lock
+submission/logs/

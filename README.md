@@ -22,8 +22,12 @@
 
 RuleTaker 固定、去重的 8,750/1,750/1,750 训练／开发／锁定测试试验已完成。Laya 原生 choice 决策头经两轮小规模训练，在 RuleTaker 锁定测试上从 50.74% 提升至 87.14%；但在 JevBench 公开 231 题上从 58.01% 变为 56.28%，没有通用迁移收益证据。完整数据边界、结果和权重索引见 `_research/E1-result.md`。下一轮需改变训练任务的覆盖面，不能用这 231 题筛选新方案。
 
-## 下一实验门
+## E2、E3 与提交准备（2026-09-26）
 
-先固定一套训练外开发集和锁定测试集、数据来源许可、重复/近重复检查、模型与脚本版本，再做小规模训练试验。训练素材不得包含 JevBench 公开题、近义改写或答案解析；JevBench 公开集不用于选 checkpoint 或调组合阈值。小试验需要同时报告独立测试准确率、校准、延迟、成本与能力回退。只有小试验证明增益，才扩大到 100k 训练方案。
+E2 四类自编任务训练使同生成器锁定测试由 37.55% 提至 98.54%；JevBench 旧公开 231 题仅由 58.01% 至 59.74%，配对区间跨零。E3 冻结 E2 后在外部公开来源上，BoolQ 400 题由 75.75% 至 79.25%，ARC-Challenge 299 题由 27.09% 至 29.10%。两来源等权平均提高 2.75 个百分点，但 ARC 的绝对成绩仍低，且两数据集是公开题。完整判断见 `_research/E2-result.md` 与 `_research/E3-result.md`。
+
+JevBench 当前 v1.4.2 官方分数包含旧版 534 题、新的 308 道 sealed 题，以及 Intelligence、Calibration、Speed、Cost 四轴。上述 231 题诊断不能换算成现行榜单名次。E2 还没有 sealed 结果；运行库会对该权重部分温度参数进行夹取，概率校准需要单独审视。
+
+`submission/` 已准备固定 E2 权重的 Jev 兼容服务和模型卡；DGX 上已形成带 SHA256 的自包含权重归档。JevBench 自带 TypeSafe 适配器通过 choice、noul、score 三类真实 HTTP 请求，并与直接加载权重的概率一致。目前只有本机验收，尚无公开权重、公开端点或官方提交。发布前需确定公开仓库与权重托管位置，并披露项目在研发过程中观察过 JevBench 公开题。
 
 外部规则与截图来源：[JevBench](https://github.com/fstandhartinger/jevbench/blob/main/README.md)；[NeoHorse 模型卡](https://huggingface.co/TokenRhythm/NeoHorse-Jev-4B)。

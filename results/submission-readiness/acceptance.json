@@ -1,0 +1,29 @@
+{
+  "endpoint": "http://127.0.0.1:8942",
+  "cases": [
+    {
+      "id": "fixture-choice",
+      "type": "choice",
+      "status": 200,
+      "schema_valid": true,
+      "direct_parity": true,
+      "latency_s": 0.033093510079197586
+    },
+    {
+      "id": "fixture-noul",
+      "type": "noul",
+      "status": 200,
+      "schema_valid": true,
+      "direct_parity": true,
+      "latency_s": 0.018960844026878476
+    },
+    {
+      "id": "fixture-score",
+      "type": "score",
+      "status": 200,
+      "schema_valid": true,
+      "direct_parity": true,
+      "latency_s": 0.01928793196566403
+    }
+  ]
+}

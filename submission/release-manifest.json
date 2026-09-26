@@ -1,0 +1,49 @@
+{
+  "candidate": "laya-e2-multitype-seed20260925",
+  "status": "local_release_prepared_not_published",
+  "prepared_at": "2026-09-26",
+  "remote_directory": "ssh://dgx/home/maolinqi/mlq/laya-jevbench-baseline/e2_submission/release",
+  "archive": {
+    "locator": "ssh://dgx/home/maolinqi/mlq/laya-jevbench-baseline/e2_submission/laya-e2-multitype-seed20260925.tar.gz",
+    "sha256": "970c4ebbb1608d980500d8f23f1965b5b1de4ee0b556007d5702412bec1bb767",
+    "size_bytes": 777062797
+  },
+  "runtime": {
+    "laya_version": "0.3.20",
+    "laya_source_commit": "23a17522aa4942da6cce53a995a275760320b691",
+    "environment": "/home/maolinqi/mlq/laya/.venv"
+  },
+  "base_model": {
+    "source": "https://huggingface.co/convaiinnovations/laya",
+    "license": "Apache-2.0",
+    "local_weight_sha256": "891102d372688fc2a094dac56a384bc537b87c63f21f9f3dac0be2b7cbc8d86c"
+  },
+  "training": {
+    "experiment": "E2",
+    "run_manifest": "runs/E2/20260925T214313/run-manifest.json",
+    "training_data_sha256": "f7115f47421a9428e3150d30c842a09aa19cb192d9d8ac1af64edc6c65222573",
+    "selected_epoch": 2
+  },
+  "files": {
+    "LICENSE": "sha256:a6cba85bc92e0cff7a450b1d873c0eaa2e9fc96bf472df0247a26bec77bf3ff9",
+    "README.md": "sha256:217b0a7bc4f76f48016b5a13f4024b10f14e33f904ba8913c8240e1ed5df6657",
+    "encoder/config.json": "sha256:bf3ab80598fdccf414855a2ce80f22859e4492d06ca8a62ddd1cfb63972f8979",
+    "model.safetensors": "sha256:e4e3ca110dd2f294e2b3c43dd7ef9afe0352ea397ca0e7e6f7fbfb05dccf7789",
+    "rl_agent_config.json": "sha256:ae287b56bbcf5f8c4f4541ae9dfd00c914c4c48b940b8398c3058af37ba92bbd",
+    "tokenizer/tokenizer.json": "sha256:6c8aaa9a542084f2457eab775d4eeb51f92a70c0fd9de28d5edb0ddec3c08d30",
+    "tokenizer/tokenizer_config.json": "sha256:50044de60daaa73df97d262e15a40d4faf0160e7d742df64b377877a1320dd12"
+  },
+  "acceptance": {
+    "artifact": "results/submission-readiness/release-acceptance.json",
+    "types": ["choice", "noul", "score"],
+    "official_adapter": "JevBench TypeSafeAdapter",
+    "direct_probability_parity": true
+  },
+  "disclosure": {
+    "jevbench_public_in_gradient_training": false,
+    "jevbench_public_used_during_research": true,
+    "sealed_jevbench_evaluation": false,
+    "published_endpoint": false,
+    "published_weights": false
+  }
+}
